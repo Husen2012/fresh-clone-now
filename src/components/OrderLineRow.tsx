@@ -38,9 +38,9 @@ export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) =>
   };
 
   return (
-    <tr className="border-b border-border hover:bg-muted/20">
-      <td className="p-2">
-        <div className="w-12 h-12 border border-dashed border-border rounded flex items-center justify-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer relative overflow-hidden">
+    <tr className="hover:bg-muted/10">
+      <td className="p-0 border border-border">
+        <div className="w-full h-8 flex items-center justify-center bg-card hover:bg-muted/20 transition-colors cursor-pointer relative overflow-hidden">
           {imagePreview ? (
             <img src={imagePreview} alt="Product" className="w-full h-full object-cover" />
           ) : (
@@ -54,58 +54,62 @@ export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) =>
           />
         </div>
       </td>
-      <td className="p-2">
+      <td className="p-0 border border-border">
         <Input
           value={line.productName}
           onChange={(e) => onUpdate(line.id, 'productName', e.target.value)}
           placeholder="Product"
-          className="h-7 text-xs"
+          className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20"
         />
       </td>
-      <td className="p-2">
+      <td className="p-0 border border-border">
         <Input
           value={line.description}
           onChange={(e) => onUpdate(line.id, 'description', e.target.value)}
           placeholder="Description"
-          className="h-7 text-xs"
+          className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20"
         />
       </td>
-      <td className="p-2">
+      <td className="p-0 border border-border">
         <Input
           type="number"
           value={line.qty}
           onChange={(e) => onUpdate(line.id, 'qty', Number(e.target.value))}
-          className="w-14 h-7 text-xs"
+          className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20 text-center"
         />
       </td>
-      <td className="p-2">
+      <td className="p-0 border border-border">
         <Input
           type="number"
           value={line.unitPrice}
           onChange={(e) => onUpdate(line.id, 'unitPrice', Number(e.target.value))}
-          className="w-20 h-7 text-xs"
+          className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20 text-right"
         />
       </td>
-      <td className="p-2">
+      <td className="p-0 border border-border">
         <Input
           value={line.vendor}
           onChange={(e) => onUpdate(line.id, 'vendor', e.target.value)}
           placeholder="Vendor"
-          className="h-7 text-xs"
+          className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20"
         />
       </td>
-      <td className="p-2">
-        <span className="text-xs font-medium">${subtotal.toFixed(2)}</span>
+      <td className="p-0 border border-border">
+        <div className="h-8 flex items-center justify-end px-2">
+          <span className="text-xs font-medium">${subtotal.toFixed(2)}</span>
+        </div>
       </td>
-      <td className="p-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => onDelete(line.id)}
-          className="h-6 w-6"
-        >
-          <Trash2 className="h-3 w-3 text-destructive" />
-        </Button>
+      <td className="p-0 border border-border">
+        <div className="h-8 flex items-center justify-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onDelete(line.id)}
+            className="h-7 w-7 hover:bg-destructive/10"
+          >
+            <Trash2 className="h-3 w-3 text-destructive" />
+          </Button>
+        </div>
       </td>
     </tr>
   );
