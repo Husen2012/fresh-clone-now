@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { Save, Plus, Menu } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -95,13 +96,29 @@ const MasterOrder = () => {
       <div className="p-4 max-w-[1600px] mx-auto">
         <Card>
           <CardContent className="p-4">
-            <div className="mb-4">
-              <h1 className="text-xl font-bold text-foreground">{formData.orderNumber}</h1>
-              <p className="text-xs text-muted-foreground">Master Order</p>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h1 className="text-xl font-bold text-foreground">{formData.orderNumber}</h1>
+                <p className="text-xs text-muted-foreground">Master Order</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="virtualInventory"
+                  checked={formData.virtualInventory}
+                  onCheckedChange={(checked) => 
+                    setFormData({ ...formData, virtualInventory: checked as boolean })
+                  }
+                />
+                <Label htmlFor="virtualInventory" className="text-xs font-normal">
+                  Virtual Inventory (Dropship/D2D)
+                </Label>
+              </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className="space-y-3">
+            {/* Order Information Section */}
+            <div className="mb-4">
+              <h3 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Order Information</h3>
+              <div className="grid grid-cols-4 gap-3">
                 <div>
                   <Label htmlFor="projectName" className="text-xs">Project Name</Label>
                   <Input
@@ -111,7 +128,6 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-
                 <div>
                   <Label htmlFor="client" className="text-xs">Client</Label>
                   <Input
@@ -121,29 +137,6 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-
-                <div>
-                  <Label htmlFor="shipper" className="text-xs">Shipper</Label>
-                  <Input
-                    id="shipper"
-                    value={formData.shipper}
-                    onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="currency" className="text-xs">Currency</Label>
-                  <Input
-                    id="currency"
-                    value={formData.currency}
-                    onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-3">
                 <div>
                   <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
                   <Input
@@ -154,7 +147,6 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-
                 <div>
                   <Label htmlFor="expectedDelivery" className="text-xs">Expected Delivery</Label>
                   <Input
@@ -165,7 +157,22 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
+              </div>
+            </div>
 
+            {/* Shipping Information Section */}
+            <div className="mb-4">
+              <h3 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Shipping Information</h3>
+              <div className="grid grid-cols-4 gap-3">
+                <div>
+                  <Label htmlFor="shipper" className="text-xs">Shipper</Label>
+                  <Input
+                    id="shipper"
+                    value={formData.shipper}
+                    onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
                 <div>
                   <Label htmlFor="shippingCost" className="text-xs">Shipping Cost</Label>
                   <Input
@@ -176,7 +183,6 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-
                 <div>
                   <Label htmlFor="shippingCharge" className="text-xs">Shipping Charge</Label>
                   <Input
@@ -187,11 +193,8 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-3">
                 <div>
-                  <Label htmlFor="shippingMargin" className="text-xs">Shipping Margin</Label>
+                  <Label htmlFor="shippingMargin" className="text-xs">Shipping Margin (%)</Label>
                   <Input
                     id="shippingMargin"
                     type="number"
@@ -200,7 +203,22 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
+              </div>
+            </div>
 
+            {/* Financial Information Section */}
+            <div className="mb-4">
+              <h3 className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Financial Information</h3>
+              <div className="grid grid-cols-4 gap-3">
+                <div>
+                  <Label htmlFor="currency" className="text-xs">Currency</Label>
+                  <Input
+                    id="currency"
+                    value={formData.currency}
+                    onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
                 <div>
                   <Label htmlFor="commissionRate" className="text-xs">Commission Rate (%)</Label>
                   <Input
@@ -211,30 +229,16 @@ const MasterOrder = () => {
                     className="mt-1 h-8 text-sm"
                   />
                 </div>
-
-                <div>
+                <div className="col-span-2">
                   <Label htmlFor="totalProfit" className="text-xs">Total Profit</Label>
                   <Input
                     id="totalProfit"
                     type="number"
                     value={formData.totalProfit}
                     onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
-                    className="mt-1 h-8 text-sm"
+                    className="mt-1 h-8 text-sm font-semibold"
                     disabled
                   />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="virtualInventory"
-                    checked={formData.virtualInventory}
-                    onCheckedChange={(checked) => 
-                      setFormData({ ...formData, virtualInventory: checked as boolean })
-                    }
-                  />
-                  <Label htmlFor="virtualInventory" className="text-xs font-normal">
-                    Virtual Inventory (Dropship/D2D)
-                  </Label>
                 </div>
               </div>
             </div>
