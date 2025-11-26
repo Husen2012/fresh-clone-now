@@ -295,9 +295,29 @@ const MasterOrder = () => {
                 </div>
               </div>
 
-              {/* Right Side - Empty for future use */}
-              <div className="bg-muted/10 rounded p-4 border border-dashed border-border/50 flex items-center justify-center min-h-[400px]">
-                <p className="text-xs text-muted-foreground">Reserved for future content</p>
+              {/* Right Side - Link Buttons */}
+              <div className="space-y-3">
+                <div className="bg-card rounded p-4 border border-border">
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Related Orders</h3>
+                  <div className="space-y-2">
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start gap-2 h-9"
+                      onClick={() => toast({ title: "Navigate to Sale Order" })}
+                    >
+                      <FileText className="h-4 w-4" />
+                      Sale Order
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start gap-2 h-9"
+                      onClick={() => toast({ title: "Navigate to Purchase Order" })}
+                    >
+                      <Package className="h-4 w-4" />
+                      Purchase Order
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
 
