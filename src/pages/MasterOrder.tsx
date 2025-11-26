@@ -113,18 +113,31 @@ const MasterOrder = () => {
                 <h1 className="text-lg font-bold text-foreground">{formData.orderNumber}</h1>
                 <p className="text-xs text-muted-foreground">Master Order</p>
               </div>
-              <div className="flex items-center gap-1.5 bg-muted/50 px-2 py-1 rounded border border-border">
-                <Package className="h-3 w-3 text-primary" />
-                <Checkbox
-                  id="virtualInventory"
-                  checked={formData.virtualInventory}
-                  onCheckedChange={(checked) => 
-                    setFormData({ ...formData, virtualInventory: checked as boolean })
-                  }
-                />
-                <Label htmlFor="virtualInventory" className="text-xs cursor-pointer">
-                  Virtual Inventory
-                </Label>
+              <div className="flex items-center gap-2">
+                <Button 
+                  onClick={() => toast({ 
+                    title: "Purchase Order Created", 
+                    description: "New purchase order has been generated from this master order." 
+                  })}
+                  size="sm"
+                  className="gap-1.5 h-8"
+                >
+                  <Plus className="h-3.5 w-3.5" />
+                  Create Purchase Order
+                </Button>
+                <div className="flex items-center gap-1.5 bg-muted/50 px-2 py-1 rounded border border-border">
+                  <Package className="h-3 w-3 text-primary" />
+                  <Checkbox
+                    id="virtualInventory"
+                    checked={formData.virtualInventory}
+                    onCheckedChange={(checked) => 
+                      setFormData({ ...formData, virtualInventory: checked as boolean })
+                    }
+                  />
+                  <Label htmlFor="virtualInventory" className="text-xs cursor-pointer">
+                    Virtual Inventory
+                  </Label>
+                </div>
               </div>
             </div>
 
