@@ -298,18 +298,18 @@ const MasterOrder = () => {
                 </div>
               </div>
 
-              <div className="border border-border rounded-lg overflow-hidden">
-                <table className="w-full">
-                  <thead className="bg-muted/30">
-                    <tr className="border-b border-border">
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Image</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Product Name</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Description</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Qty</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Unit Price</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Vendor</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Subtotal</th>
-                      <th className="text-left p-2 text-xs font-medium text-foreground">Actions</th>
+              <div className="border border-border overflow-hidden">
+                <table className="w-full border-collapse">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-14">Image</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Product Name</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Description</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-16">Qty</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Unit Price</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Vendor</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Subtotal</th>
+                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-12">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-card">
