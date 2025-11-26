@@ -38,16 +38,13 @@ export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) =>
   };
 
   return (
-    <tr className="border-b border-border">
-      <td className="p-3">
-        <div className="w-24 h-24 border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer relative overflow-hidden">
+    <tr className="border-b border-border hover:bg-muted/20">
+      <td className="p-2">
+        <div className="w-12 h-12 border border-dashed border-border rounded flex items-center justify-center bg-muted/30 hover:bg-muted/50 transition-colors cursor-pointer relative overflow-hidden">
           {imagePreview ? (
             <img src={imagePreview} alt="Product" className="w-full h-full object-cover" />
           ) : (
-            <>
-              <ImageIcon className="h-6 w-6 text-muted-foreground mb-1" />
-              <span className="text-xs text-muted-foreground">Paste or</span>
-            </>
+            <Upload className="h-3 w-3 text-muted-foreground" />
           )}
           <input
             type="file"
@@ -56,67 +53,58 @@ export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) =>
             className="absolute inset-0 opacity-0 cursor-pointer"
           />
         </div>
-        {!imagePreview && (
-          <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
-            <Upload className="h-3 w-3" />
-            <span>Upload</span>
-          </div>
-        )}
       </td>
-      <td className="p-3">
+      <td className="p-2">
         <Input
           value={line.productName}
           onChange={(e) => onUpdate(line.id, 'productName', e.target.value)}
-          placeholder="Product name"
-          className="bg-card"
+          placeholder="Product"
+          className="h-7 text-xs"
         />
       </td>
-      <td className="p-3">
+      <td className="p-2">
         <Input
           value={line.description}
           onChange={(e) => onUpdate(line.id, 'description', e.target.value)}
           placeholder="Description"
-          className="bg-card"
+          className="h-7 text-xs"
         />
       </td>
-      <td className="p-3">
-        <div className="flex items-center gap-2">
-          <Input
-            type="number"
-            value={line.qty}
-            onChange={(e) => onUpdate(line.id, 'qty', Number(e.target.value))}
-            className="bg-card w-20"
-          />
-          <span className="text-xs text-muted-foreground">pcs</span>
-        </div>
+      <td className="p-2">
+        <Input
+          type="number"
+          value={line.qty}
+          onChange={(e) => onUpdate(line.id, 'qty', Number(e.target.value))}
+          className="w-14 h-7 text-xs"
+        />
       </td>
-      <td className="p-3">
+      <td className="p-2">
         <Input
           type="number"
           value={line.unitPrice}
           onChange={(e) => onUpdate(line.id, 'unitPrice', Number(e.target.value))}
-          className="bg-card"
+          className="w-20 h-7 text-xs"
         />
       </td>
-      <td className="p-3">
+      <td className="p-2">
         <Input
           value={line.vendor}
           onChange={(e) => onUpdate(line.id, 'vendor', e.target.value)}
           placeholder="Vendor"
-          className="bg-card"
+          className="h-7 text-xs"
         />
       </td>
-      <td className="p-3">
-        <span className="text-muted-foreground">${subtotal.toFixed(2)}</span>
+      <td className="p-2">
+        <span className="text-xs font-medium">${subtotal.toFixed(2)}</span>
       </td>
-      <td className="p-3">
+      <td className="p-2">
         <Button
-          variant="destructive"
+          variant="ghost"
           size="icon"
           onClick={() => onDelete(line.id)}
-          className="h-9 w-9"
+          className="h-6 w-6"
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2 className="h-3 w-3 text-destructive" />
         </Button>
       </td>
     </tr>
