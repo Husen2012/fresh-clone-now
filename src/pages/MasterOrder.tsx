@@ -79,9 +79,9 @@ const MasterOrder = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="border-b border-border bg-card px-6 py-4 flex items-center gap-4">
-        <Button variant="ghost" size="icon">
-          <Menu className="h-5 w-5" />
+      <div className="border-b border-border bg-card px-4 py-2 flex items-center gap-3">
+        <Button variant="ghost" size="icon" className="h-7 w-7">
+          <Menu className="h-4 w-4" />
         </Button>
         <Breadcrumb
           items={[
@@ -92,34 +92,135 @@ const MasterOrder = () => {
         />
       </div>
 
-      <div className="p-6 max-w-[1400px] mx-auto">
+      <div className="p-4 max-w-[1600px] mx-auto">
         <Card>
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold text-foreground">{formData.orderNumber}</h1>
-              <p className="text-sm text-muted-foreground">Master Order</p>
+          <CardContent className="p-4">
+            <div className="mb-4">
+              <h1 className="text-xl font-bold text-foreground">{formData.orderNumber}</h1>
+              <p className="text-xs text-muted-foreground">Master Order</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="space-y-4">
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="space-y-3">
                 <div>
-                  <Label htmlFor="projectName">Project Name</Label>
+                  <Label htmlFor="projectName" className="text-xs">Project Name</Label>
                   <Input
                     id="projectName"
                     value={formData.projectName}
                     onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                    className="mt-1"
+                    className="mt-1 h-8 text-sm"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="orderDate">Order Date</Label>
+                  <Label htmlFor="client" className="text-xs">Client</Label>
+                  <Input
+                    id="client"
+                    value={formData.client}
+                    onChange={(e) => setFormData({ ...formData, client: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="shipper" className="text-xs">Shipper</Label>
+                  <Input
+                    id="shipper"
+                    value={formData.shipper}
+                    onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="currency" className="text-xs">Currency</Label>
+                  <Input
+                    id="currency"
+                    value={formData.currency}
+                    onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
                   <Input
                     id="orderDate"
                     type="date"
                     value={formData.orderDate}
                     onChange={(e) => setFormData({ ...formData, orderDate: e.target.value })}
-                    className="mt-1"
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="expectedDelivery" className="text-xs">Expected Delivery</Label>
+                  <Input
+                    id="expectedDelivery"
+                    type="date"
+                    value={formData.expectedDelivery}
+                    onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="shippingCost" className="text-xs">Shipping Cost</Label>
+                  <Input
+                    id="shippingCost"
+                    type="number"
+                    value={formData.shippingCost}
+                    onChange={(e) => setFormData({ ...formData, shippingCost: Number(e.target.value) })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="shippingCharge" className="text-xs">Shipping Charge</Label>
+                  <Input
+                    id="shippingCharge"
+                    type="number"
+                    value={formData.shippingCharge}
+                    onChange={(e) => setFormData({ ...formData, shippingCharge: Number(e.target.value) })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <Label htmlFor="shippingMargin" className="text-xs">Shipping Margin</Label>
+                  <Input
+                    id="shippingMargin"
+                    type="number"
+                    value={formData.shippingMargin}
+                    onChange={(e) => setFormData({ ...formData, shippingMargin: Number(e.target.value) })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="commissionRate" className="text-xs">Commission Rate (%)</Label>
+                  <Input
+                    id="commissionRate"
+                    type="number"
+                    value={formData.commissionRate}
+                    onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
+                    className="mt-1 h-8 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="totalProfit" className="text-xs">Total Profit</Label>
+                  <Input
+                    id="totalProfit"
+                    type="number"
+                    value={formData.totalProfit}
+                    onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
+                    className="mt-1 h-8 text-sm"
+                    disabled
                   />
                 </div>
 
@@ -131,122 +232,23 @@ const MasterOrder = () => {
                       setFormData({ ...formData, virtualInventory: checked as boolean })
                     }
                   />
-                  <Label htmlFor="virtualInventory" className="text-sm font-normal">
+                  <Label htmlFor="virtualInventory" className="text-xs font-normal">
                     Virtual Inventory (Dropship/D2D)
                   </Label>
-                </div>
-
-                <div>
-                  <Label htmlFor="shippingCost">Shipping Cost</Label>
-                  <Input
-                    id="shippingCost"
-                    type="number"
-                    value={formData.shippingCost}
-                    onChange={(e) => setFormData({ ...formData, shippingCost: Number(e.target.value) })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="shippingMargin">Shipping Margin</Label>
-                  <Input
-                    id="shippingMargin"
-                    type="number"
-                    value={formData.shippingMargin}
-                    onChange={(e) => setFormData({ ...formData, shippingMargin: Number(e.target.value) })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="commissionRate">Commission Rate (%)</Label>
-                  <Input
-                    id="commissionRate"
-                    type="number"
-                    value={formData.commissionRate}
-                    onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="client">Client</Label>
-                  <Input
-                    id="client"
-                    value={formData.client}
-                    onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="expectedDelivery">Expected Delivery</Label>
-                  <Input
-                    id="expectedDelivery"
-                    type="date"
-                    value={formData.expectedDelivery}
-                    onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="shipper">Shipper</Label>
-                  <Input
-                    id="shipper"
-                    value={formData.shipper}
-                    onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="shippingCharge">Shipping Charge</Label>
-                  <Input
-                    id="shippingCharge"
-                    type="number"
-                    value={formData.shippingCharge}
-                    onChange={(e) => setFormData({ ...formData, shippingCharge: Number(e.target.value) })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="currency">Currency</Label>
-                  <Input
-                    id="currency"
-                    value={formData.currency}
-                    onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="totalProfit">Total Profit</Label>
-                  <Input
-                    id="totalProfit"
-                    type="number"
-                    value={formData.totalProfit}
-                    onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
-                    className="mt-1"
-                    disabled
-                  />
                 </div>
               </div>
             </div>
 
-            <div className="mt-8">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">Order Lines</h2>
+            <div className="mt-6">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-base font-semibold">Order Lines</h2>
                 <div className="flex gap-2">
-                  <Button onClick={handleAddLine} className="gap-2">
-                    <Plus className="h-4 w-4" />
+                  <Button onClick={handleAddLine} size="sm" className="gap-1 h-8 text-xs">
+                    <Plus className="h-3 w-3" />
                     Add Line
                   </Button>
-                  <Button variant="outline" className="gap-2">
-                    <Plus className="h-4 w-4" />
+                  <Button variant="outline" size="sm" className="gap-1 h-8 text-xs">
+                    <Plus className="h-3 w-3" />
                     Add Custom Column
                   </Button>
                 </div>
@@ -256,14 +258,14 @@ const MasterOrder = () => {
                 <table className="w-full">
                   <thead className="bg-muted/30">
                     <tr className="border-b border-border">
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Image</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Product Name</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Description</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Qty</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Unit Price</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Vendor</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Subtotal</th>
-                      <th className="text-left p-3 text-sm font-medium text-foreground">Actions</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Image</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Product Name</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Description</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Qty</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Unit Price</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Vendor</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Subtotal</th>
+                      <th className="text-left p-2 text-xs font-medium text-foreground">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-card">
@@ -280,9 +282,9 @@ const MasterOrder = () => {
               </div>
             </div>
 
-            <div className="mt-6">
-              <Button onClick={handleSave} className="gap-2">
-                <Save className="h-4 w-4" />
+            <div className="mt-4">
+              <Button onClick={handleSave} size="sm" className="gap-1 h-8">
+                <Save className="h-3 w-3" />
                 Save
               </Button>
             </div>
