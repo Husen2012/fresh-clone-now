@@ -116,6 +116,18 @@ const MasterOrder = () => {
               <div className="flex items-center gap-2">
                 <Button 
                   onClick={() => toast({ 
+                    title: "Sales Order Created", 
+                    description: "New sales order has been generated from this master order." 
+                  })}
+                  size="sm"
+                  variant="outline"
+                  className="gap-1.5 h-8"
+                >
+                  <Plus className="h-3.5 w-3.5" />
+                  Create Sales Order
+                </Button>
+                <Button 
+                  onClick={() => toast({ 
                     title: "Purchase Order Created", 
                     description: "New purchase order has been generated from this master order." 
                   })}
