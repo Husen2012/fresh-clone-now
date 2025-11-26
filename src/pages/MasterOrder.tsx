@@ -96,13 +96,13 @@ const MasterOrder = () => {
       <div className="p-4 max-w-[1600px] mx-auto">
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center justify-between mb-3">
               <div>
-                <h1 className="text-xl font-bold text-foreground">{formData.orderNumber}</h1>
+                <h1 className="text-lg font-bold text-foreground">{formData.orderNumber}</h1>
                 <p className="text-xs text-muted-foreground">Master Order</p>
               </div>
-              <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md border border-border">
-                <Package className="h-3.5 w-3.5 text-primary" />
+              <div className="flex items-center gap-1.5 bg-muted/50 px-2 py-1 rounded border border-border">
+                <Package className="h-3 w-3 text-primary" />
                 <Checkbox
                   id="virtualInventory"
                   checked={formData.virtualInventory}
@@ -110,96 +110,96 @@ const MasterOrder = () => {
                     setFormData({ ...formData, virtualInventory: checked as boolean })
                   }
                 />
-                <Label htmlFor="virtualInventory" className="text-xs font-medium cursor-pointer">
-                  Virtual Inventory (Dropship/D2D)
+                <Label htmlFor="virtualInventory" className="text-xs cursor-pointer">
+                  Virtual Inventory
                 </Label>
               </div>
             </div>
 
-            {/* Basic Information */}
-            <div className="bg-muted/20 rounded-lg p-3 mb-3 border border-border/50">
-              <div className="flex items-center gap-2 mb-2.5">
-                <FileText className="h-4 w-4 text-primary" />
-                <h3 className="text-xs font-semibold text-foreground uppercase tracking-wide">Basic Information</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label htmlFor="projectName" className="text-xs flex items-center gap-1.5">
-                    <span>Project Name</span>
-                  </Label>
-                  <Input
-                    id="projectName"
-                    value={formData.projectName}
-                    onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                    placeholder="Enter project name"
-                  />
+            <div className="grid grid-cols-4 gap-2 mb-2">
+              {/* Basic Information */}
+              <div className="col-span-2 bg-muted/20 rounded p-2 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <FileText className="h-3 w-3 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">BASIC INFO</h3>
                 </div>
-                <div>
-                  <Label htmlFor="client" className="text-xs flex items-center gap-1.5">
-                    <User className="h-3 w-3 text-muted-foreground" />
-                    <span>Client</span>
-                  </Label>
-                  <Input
-                    id="client"
-                    value={formData.client}
-                    onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                    placeholder="Enter client name"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Timeline */}
-            <div className="bg-muted/20 rounded-lg p-3 mb-3 border border-border/50">
-              <div className="flex items-center gap-2 mb-2.5">
-                <Calendar className="h-4 w-4 text-primary" />
-                <h3 className="text-xs font-semibold text-foreground uppercase tracking-wide">Timeline</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
-                  <Input
-                    id="orderDate"
-                    type="date"
-                    value={formData.orderDate}
-                    onChange={(e) => setFormData({ ...formData, orderDate: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="expectedDelivery" className="text-xs">Expected Delivery Date</Label>
-                  <Input
-                    id="expectedDelivery"
-                    type="date"
-                    value={formData.expectedDelivery}
-                    onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
-                    className="mt-1 h-8 text-sm"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              {/* Shipping Details */}
-              <div className="bg-muted/20 rounded-lg p-3 border border-border/50">
-                <div className="flex items-center gap-2 mb-2.5">
-                  <Truck className="h-4 w-4 text-primary" />
-                  <h3 className="text-xs font-semibold text-foreground uppercase tracking-wide">Shipping Details</h3>
-                </div>
-                <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <Label htmlFor="shipper" className="text-xs">Shipper Company</Label>
+                    <Label htmlFor="projectName" className="text-xs">Project</Label>
+                    <Input
+                      id="projectName"
+                      value={formData.projectName}
+                      onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                      placeholder="Project name"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="client" className="text-xs flex items-center gap-1">
+                      <User className="h-2.5 w-2.5" />
+                      <span>Client</span>
+                    </Label>
+                    <Input
+                      id="client"
+                      value={formData.client}
+                      onChange={(e) => setFormData({ ...formData, client: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                      placeholder="Client name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline */}
+              <div className="col-span-2 bg-muted/20 rounded p-2 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <Calendar className="h-3 w-3 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">TIMELINE</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
+                    <Input
+                      id="orderDate"
+                      type="date"
+                      value={formData.orderDate}
+                      onChange={(e) => setFormData({ ...formData, orderDate: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="expectedDelivery" className="text-xs">Delivery</Label>
+                    <Input
+                      id="expectedDelivery"
+                      type="date"
+                      value={formData.expectedDelivery}
+                      onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              {/* Shipping Details */}
+              <div className="bg-muted/20 rounded p-2 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <Truck className="h-3 w-3 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">SHIPPING</h3>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <Label htmlFor="shipper" className="text-xs">Shipper</Label>
                     <Input
                       id="shipper"
                       value={formData.shipper}
                       onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
-                      className="mt-1 h-8 text-sm"
-                      placeholder="Enter shipper name"
+                      className="mt-0.5 h-7 text-xs"
+                      placeholder="Shipper"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5">
                     <div>
                       <Label htmlFor="shippingCost" className="text-xs">Cost</Label>
                       <Input
@@ -207,8 +207,8 @@ const MasterOrder = () => {
                         type="number"
                         value={formData.shippingCost}
                         onChange={(e) => setFormData({ ...formData, shippingCost: Number(e.target.value) })}
-                        className="mt-1 h-8 text-sm"
-                        placeholder="0.00"
+                        className="mt-0.5 h-7 text-xs"
+                        placeholder="0"
                       />
                     </div>
                     <div>
@@ -218,56 +218,55 @@ const MasterOrder = () => {
                         type="number"
                         value={formData.shippingCharge}
                         onChange={(e) => setFormData({ ...formData, shippingCharge: Number(e.target.value) })}
-                        className="mt-1 h-8 text-sm"
-                        placeholder="0.00"
+                        className="mt-0.5 h-7 text-xs"
+                        placeholder="0"
                       />
                     </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="shippingMargin" className="text-xs">Margin (%)</Label>
-                    <Input
-                      id="shippingMargin"
-                      type="number"
-                      value={formData.shippingMargin}
-                      onChange={(e) => setFormData({ ...formData, shippingMargin: Number(e.target.value) })}
-                      className="mt-1 h-8 text-sm"
-                      placeholder="0"
-                    />
+                    <div>
+                      <Label htmlFor="shippingMargin" className="text-xs">Margin %</Label>
+                      <Input
+                        id="shippingMargin"
+                        type="number"
+                        value={formData.shippingMargin}
+                        onChange={(e) => setFormData({ ...formData, shippingMargin: Number(e.target.value) })}
+                        className="mt-0.5 h-7 text-xs"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Financial Summary */}
-              <div className="bg-muted/20 rounded-lg p-3 border border-border/50">
-                <div className="flex items-center gap-2 mb-2.5">
-                  <DollarSign className="h-4 w-4 text-primary" />
-                  <h3 className="text-xs font-semibold text-foreground uppercase tracking-wide">Financial Summary</h3>
+              <div className="bg-muted/20 rounded p-2 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <DollarSign className="h-3 w-3 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">FINANCIAL</h3>
                 </div>
-                <div className="space-y-3">
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-1.5">
                     <div>
                       <Label htmlFor="currency" className="text-xs">Currency</Label>
                       <Input
                         id="currency"
                         value={formData.currency}
                         onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                        className="mt-1 h-8 text-sm"
+                        className="mt-0.5 h-7 text-xs"
                         placeholder="USD"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="commissionRate" className="text-xs">Commission (%)</Label>
+                      <Label htmlFor="commissionRate" className="text-xs">Commission %</Label>
                       <Input
                         id="commissionRate"
                         type="number"
                         value={formData.commissionRate}
                         onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
-                        className="mt-1 h-8 text-sm"
+                        className="mt-0.5 h-7 text-xs"
                         placeholder="0"
                       />
                     </div>
                   </div>
-                  <Separator />
                   <div>
                     <Label htmlFor="totalProfit" className="text-xs font-semibold">Total Profit</Label>
                     <Input
@@ -275,7 +274,7 @@ const MasterOrder = () => {
                       type="number"
                       value={formData.totalProfit}
                       onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
-                      className="mt-1 h-9 text-sm font-bold bg-primary/5 border-primary/20"
+                      className="mt-0.5 h-8 text-xs font-bold bg-primary/5 border-primary/20"
                       disabled
                       placeholder="0.00"
                     />
