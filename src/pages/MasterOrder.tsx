@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { Save, Plus, Menu, FileText, User, Calendar, Truck, DollarSign, Package } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -374,54 +375,92 @@ const MasterOrder = () => {
               </div>
             </div>
 
-            <div className="mt-6">
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base font-semibold">Order Lines</h2>
-                <div className="flex gap-2">
-                  <Button onClick={handleAddLine} size="sm" className="gap-1 h-8 text-xs">
-                    <Plus className="h-3 w-3" />
-                    Add Line
-                  </Button>
-                  <Button onClick={handleAddCustomColumn} variant="outline" size="sm" className="gap-1 h-8 text-xs">
-                    <Plus className="h-3 w-3" />
-                    Add Custom Column
-                  </Button>
-                </div>
-              </div>
+            <Tabs defaultValue="order-lines" className="mt-6">
+              <TabsList className="mb-3">
+                <TabsTrigger value="order-lines">Order Lines</TabsTrigger>
+                <TabsTrigger value="documents">Documents</TabsTrigger>
+                <TabsTrigger value="payments">Payments</TabsTrigger>
+                <TabsTrigger value="expenses">Expenses</TabsTrigger>
+                <TabsTrigger value="inspection">Inspection</TabsTrigger>
+              </TabsList>
 
-              <div className="border border-border overflow-hidden">
-                <table className="w-full border-collapse">
-                  <thead className="bg-muted/50">
-                    <tr>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-14">Image</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Product Name</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Description</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-16">Qty</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Unit Price</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Vendor</th>
-                      {customColumns.map((col, idx) => (
-                        <th key={idx} className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-32">
-                          {col}
-                        </th>
+              <TabsContent value="order-lines">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-base font-semibold">Order Lines</h2>
+                  <div className="flex gap-2">
+                    <Button onClick={handleAddLine} size="sm" className="gap-1 h-8 text-xs">
+                      <Plus className="h-3 w-3" />
+                      Add Line
+                    </Button>
+                    <Button onClick={handleAddCustomColumn} variant="outline" size="sm" className="gap-1 h-8 text-xs">
+                      <Plus className="h-3 w-3" />
+                      Add Custom Column
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="border border-border overflow-hidden">
+                  <table className="w-full border-collapse">
+                    <thead className="bg-muted/50">
+                      <tr>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-14">Image</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Product Name</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Description</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-16">Qty</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Unit Price</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Vendor</th>
+                        {customColumns.map((col, idx) => (
+                          <th key={idx} className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-32">
+                            {col}
+                          </th>
+                        ))}
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Subtotal</th>
+                        <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-12">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-card">
+                      {orderLines.map((line) => (
+                        <OrderLineRow
+                          key={line.id}
+                          line={line}
+                          onUpdate={handleUpdateLine}
+                          onDelete={handleDeleteLine}
+                          customColumns={customColumns}
+                        />
                       ))}
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Subtotal</th>
-                      <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-12">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-card">
-                    {orderLines.map((line) => (
-                      <OrderLineRow
-                        key={line.id}
-                        line={line}
-                        onUpdate={handleUpdateLine}
-                        onDelete={handleDeleteLine}
-                        customColumns={customColumns}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                    </tbody>
+                  </table>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="documents">
+                <div className="bg-muted/10 rounded p-8 border border-border text-center">
+                  <FileText className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Documents section - Coming soon</p>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="payments">
+                <div className="bg-muted/10 rounded p-8 border border-border text-center">
+                  <DollarSign className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Payments section - Coming soon</p>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="expenses">
+                <div className="bg-muted/10 rounded p-8 border border-border text-center">
+                  <DollarSign className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Expenses section - Coming soon</p>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="inspection">
+                <div className="bg-muted/10 rounded p-8 border border-border text-center">
+                  <FileText className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Inspection section - Coming soon</p>
+                </div>
+              </TabsContent>
+            </Tabs>
 
             <div className="mt-4">
               <Button onClick={handleSave} size="sm" className="gap-1 h-8">
