@@ -316,6 +316,22 @@ const MasterOrder = () => {
                       <Package className="h-4 w-4" />
                       Purchase Order
                     </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start gap-2 h-9"
+                      onClick={() => toast({ title: "Navigate to Shipping" })}
+                    >
+                      <Truck className="h-4 w-4" />
+                      Shipping
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-start gap-2 h-9"
+                      onClick={() => toast({ title: "Navigate to Payment" })}
+                    >
+                      <DollarSign className="h-4 w-4" />
+                      Payment
+                    </Button>
                   </div>
                 </div>
               </div>
