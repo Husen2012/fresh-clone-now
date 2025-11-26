@@ -17,9 +17,10 @@ interface OrderLineRowProps {
   line: OrderLine;
   onUpdate: (id: string, field: keyof OrderLine, value: any) => void;
   onDelete: (id: string) => void;
+  customColumns?: string[];
 }
 
-export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) => {
+export const OrderLineRow = ({ line, onUpdate, onDelete, customColumns = [] }: OrderLineRowProps) => {
   const [imagePreview, setImagePreview] = useState<string | undefined>(line.image);
   
   const subtotal = (line.qty || 0) * (line.unitPrice || 0);
@@ -94,6 +95,14 @@ export const OrderLineRow = ({ line, onUpdate, onDelete }: OrderLineRowProps) =>
           className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20"
         />
       </td>
+      {customColumns.map((col, idx) => (
+        <td key={idx} className="p-0 border border-border">
+          <Input
+            placeholder={col}
+            className="h-8 text-xs border-0 rounded-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:bg-muted/20"
+          />
+        </td>
+      ))}
       <td className="p-0 border border-border">
         <div className="h-8 flex items-center justify-end px-2">
           <span className="text-xs font-medium">${subtotal.toFixed(2)}</span>

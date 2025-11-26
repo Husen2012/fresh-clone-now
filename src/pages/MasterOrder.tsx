@@ -22,6 +22,7 @@ interface OrderLine {
 
 const MasterOrder = () => {
   const { toast } = useToast();
+  const [customColumns, setCustomColumns] = useState<string[]>([]);
   const [orderLines, setOrderLines] = useState<OrderLine[]>([
     {
       id: '1',
@@ -69,6 +70,17 @@ const MasterOrder = () => {
 
   const handleDeleteLine = (id: string) => {
     setOrderLines(orderLines.filter(line => line.id !== id));
+  };
+
+  const handleAddCustomColumn = () => {
+    const columnName = prompt("Enter custom column name:");
+    if (columnName && columnName.trim()) {
+      setCustomColumns([...customColumns, columnName.trim()]);
+      toast({
+        title: "Column Added",
+        description: `Custom column "${columnName}" has been added.`,
+      });
+    }
   };
 
   const handleSave = () => {
@@ -297,7 +309,7 @@ const MasterOrder = () => {
                     <Plus className="h-3 w-3" />
                     Add Line
                   </Button>
-                  <Button variant="outline" size="sm" className="gap-1 h-8 text-xs">
+                  <Button onClick={handleAddCustomColumn} variant="outline" size="sm" className="gap-1 h-8 text-xs">
                     <Plus className="h-3 w-3" />
                     Add Custom Column
                   </Button>
@@ -314,6 +326,11 @@ const MasterOrder = () => {
                       <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-16">Qty</th>
                       <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Unit Price</th>
                       <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30">Vendor</th>
+                      {customColumns.map((col, idx) => (
+                        <th key={idx} className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-32">
+                          {col}
+                        </th>
+                      ))}
                       <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-24">Subtotal</th>
                       <th className="text-left px-1.5 py-1 text-[10px] font-semibold text-foreground border border-border bg-muted/30 w-12">Actions</th>
                     </tr>
@@ -325,6 +342,7 @@ const MasterOrder = () => {
                         line={line}
                         onUpdate={handleUpdateLine}
                         onDelete={handleDeleteLine}
+                        customColumns={customColumns}
                       />
                     ))}
                   </tbody>
