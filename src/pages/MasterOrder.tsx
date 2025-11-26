@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
+import { DocumentsTab } from "@/components/DocumentsTab";
 import { Save, Plus, Menu, FileText, User, Calendar, Truck, DollarSign, Package } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -434,10 +435,7 @@ const MasterOrder = () => {
               </TabsContent>
 
               <TabsContent value="documents">
-                <div className="bg-muted/10 rounded p-8 border border-border text-center">
-                  <FileText className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">Documents section - Coming soon</p>
-                </div>
+                <DocumentsTab orderId={formData.orderNumber} />
               </TabsContent>
 
               <TabsContent value="payments">
