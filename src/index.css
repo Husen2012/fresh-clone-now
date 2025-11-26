@@ -9,22 +9,22 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 96.5%;
-    --foreground: 0 0% 13%;
+    --foreground: 0 0% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 13%;
+    --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 0 0% 20%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 46%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 162 63% 41%;
     --accent-foreground: 0 0% 100%;
@@ -32,20 +32,20 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
-    --ring: 0 0% 20%;
+    --border: 0 0% 91%;
+    --input: 0 0% 91%;
+    --ring: 0 0% 9%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 92%;
-    --sidebar-foreground: 0 0% 13%;
-    --sidebar-primary: 0 0% 20%;
+    --sidebar-background: 0 0% 94.5%;
+    --sidebar-foreground: 0 0% 9%;
+    --sidebar-primary: 0 0% 9%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 100%;
-    --sidebar-accent-foreground: 0 0% 13%;
-    --sidebar-border: 0 0% 87%;
-    --sidebar-ring: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 0 0% 9%;
   }
 
   .dark {
