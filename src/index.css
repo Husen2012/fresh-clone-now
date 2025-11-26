@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 0 0% 96.5%;
     --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
@@ -17,39 +17,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 13%;
 
-    --primary: 162 63% 41%;
+    --primary: 0 0% 20%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 162 20% 96%;
+    --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 13%;
 
-    --muted: 210 14% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 46%;
 
-    --accent: 162 100% 35%;
+    --accent: 162 63% 41%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 14% 89%;
-    --input: 210 14% 93%;
-    --ring: 162 63% 41%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 20%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 13%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 162 63% 41%;
+    --sidebar-background: 0 0% 92%;
+    --sidebar-foreground: 0 0% 13%;
+    --sidebar-primary: 0 0% 20%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 162 63% 41%;
+    --sidebar-accent: 0 0% 100%;
+    --sidebar-accent-foreground: 0 0% 13%;
+    --sidebar-border: 0 0% 87%;
+    --sidebar-ring: 0 0% 20%;
   }
 
   .dark {
-    --background: 162 73% 15%;
+    --background: 0 0% 11%;
     --foreground: 0 0% 95%;
 
     --card: 0 0% 13%;
@@ -58,16 +58,16 @@ All colors MUST be HSL.
     --popover: 0 0% 13%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 162 63% 41%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 13%;
 
-    --secondary: 0 0% 20%;
+    --secondary: 0 0% 18%;
     --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 20%;
+    --muted: 0 0% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 162 100% 35%;
+    --accent: 162 63% 41%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -75,15 +75,15 @@ All colors MUST be HSL.
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 162 63% 41%;
+    --ring: 0 0% 95%;
     --sidebar-background: 0 0% 11%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 162 63% 41%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 95%;
+    --sidebar-primary-foreground: 0 0% 13%;
     --sidebar-accent: 0 0% 18%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 162 63% 41%;
+    --sidebar-ring: 0 0% 95%;
   }
 }
 
