@@ -7,7 +7,9 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
+  /* Default Theme */
+  :root,
+  .theme-default {
     --background: 0 0% 96.5%;
     --foreground: 0 0% 9%;
 
@@ -46,6 +48,48 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 0 0% 9%;
     --sidebar-border: 0 0% 85%;
     --sidebar-ring: 0 0% 9%;
+  }
+
+  /* Excel Theme - Classic spreadsheet look */
+  .theme-excel {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 139 50% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 139 20% 95%;
+    --secondary-foreground: 139 50% 25%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 139 50% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 82%;
+    --input: 0 0% 85%;
+    --ring: 139 50% 35%;
+
+    --radius: 0.125rem;
+
+    --sidebar-background: 139 15% 95%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 139 50% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 139 30% 90%;
+    --sidebar-accent-foreground: 139 50% 25%;
+    --sidebar-border: 139 15% 85%;
+    --sidebar-ring: 139 50% 35%;
   }
 
   .dark {
