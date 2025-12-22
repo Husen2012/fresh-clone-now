@@ -50,46 +50,46 @@ All colors MUST be HSL.
     --sidebar-ring: 0 0% 9%;
   }
 
-  /* Excel Theme - Classic spreadsheet look */
+  /* Excel Theme - Microsoft Excel exact colors */
   .theme-excel {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 15%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 145 55% 28%;
+    --primary: 147 55% 29%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 145 25% 92%;
-    --secondary-foreground: 145 55% 20%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 13%;
 
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 145 55% 28%;
+    --accent: 147 55% 29%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 82%;
+    --border: 0 0% 85%;
     --input: 0 0% 85%;
-    --ring: 145 55% 28%;
+    --ring: 147 55% 29%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 145 20% 92%;
-    --sidebar-foreground: 0 0% 15%;
-    --sidebar-primary: 145 55% 28%;
+    --sidebar-background: 147 30% 95%;
+    --sidebar-foreground: 0 0% 13%;
+    --sidebar-primary: 147 55% 29%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 145 35% 85%;
-    --sidebar-accent-foreground: 145 55% 20%;
-    --sidebar-border: 145 20% 80%;
-    --sidebar-ring: 145 55% 28%;
+    --sidebar-accent: 147 40% 90%;
+    --sidebar-accent-foreground: 0 0% 13%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 147 55% 29%;
   }
 
   .dark {
