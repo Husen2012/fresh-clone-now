@@ -1,5 +1,6 @@
 import { Home, FileText, Package, LayoutDashboard } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +24,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar className={open ? "w-56" : "w-14"} collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="flex h-full flex-col">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -45,7 +46,13 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* Theme switcher (always visible, even when sidebar is collapsed) */}
+        <div className="mt-auto border-t border-sidebar-border p-2">
+          <ThemeSwitcher compact={!open} />
+        </div>
       </SidebarContent>
     </Sidebar>
   );
 }
+

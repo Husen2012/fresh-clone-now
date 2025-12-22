@@ -1,30 +1,38 @@
-import { useTheme, ThemeName } from '@/contexts/ThemeContext';
-import { Button } from '@/components/ui/button';
+import { useTheme, ThemeName } from "@/contexts/ThemeContext";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Palette, Check } from 'lucide-react';
+} from "@/components/ui/dropdown-menu";
+import { useSidebar } from "@/components/ui/sidebar";
+import { Palette, Check } from "lucide-react";
 
 const themes: { name: ThemeName; label: string; description: string }[] = [
-  { name: 'default', label: 'Default', description: 'Clean modern theme' },
-  { name: 'excel', label: 'Excel', description: 'Classic spreadsheet style' },
+  { name: "default", label: "Default", description: "Clean modern theme" },
+  { name: "excel", label: "Excel", description: "Classic spreadsheet style" },
 ];
 
-export const ThemeSwitcher = () => {
+type ThemeSwitcherProps = {
+  /** Better for narrow spaces (e.g. collapsed sidebar) */
+  compact?: boolean;
+};
+
+export const ThemeSwitcher = ({ compact }: ThemeSwitcherProps) => {
   const { theme, setTheme } = useTheme();
+  const sidebar = useSidebar();
+  const showText = !compact && sidebar.open;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
+        <Button variant="outline" size={compact ? "icon" : "sm"} className={compact ? "h-9 w-9" : "gap-2"}>
           <Palette className="h-4 w-4" />
-          <span className="hidden sm:inline">Theme</span>
+          {showText && <span>Theme</span>}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      <DropdownMenuContent align="end" className="z-50 w-56 bg-popover">
         {themes.map((t) => (
           <DropdownMenuItem
             key={t.name}
@@ -42,3 +50,4 @@ export const ThemeSwitcher = () => {
     </DropdownMenu>
   );
 };
+
