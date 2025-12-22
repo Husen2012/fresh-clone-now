@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { DocumentsTab } from "@/components/DocumentsTab";
-import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck, ArrowRight } from "lucide-react";
+import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OrderLine {
@@ -283,7 +283,7 @@ const MasterOrder = () => {
                   {/* Purchase Flow */}
                   <div className="mb-4">
                     <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Purchase Flow</p>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-2">
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -293,7 +293,6 @@ const MasterOrder = () => {
                         <Package className="h-3.5 w-3.5 text-primary" />
                         <span className="truncate">Purchase Order</span>
                       </Button>
-                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -303,7 +302,6 @@ const MasterOrder = () => {
                         <FileCheck className="h-3.5 w-3.5 text-orange-500" />
                         <span className="truncate">Vendor Bill</span>
                       </Button>
-                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -319,7 +317,7 @@ const MasterOrder = () => {
                   {/* Sales Flow */}
                   <div className="mb-4">
                     <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Sales Flow</p>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-2">
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -329,7 +327,6 @@ const MasterOrder = () => {
                         <FileText className="h-3.5 w-3.5 text-primary" />
                         <span className="truncate">Sales Order</span>
                       </Button>
-                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -339,7 +336,6 @@ const MasterOrder = () => {
                         <FileCheck className="h-3.5 w-3.5 text-green-500" />
                         <span className="truncate">Invoice</span>
                       </Button>
-                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                       <Button 
                         variant="outline" 
                         size="sm"
