@@ -82,13 +82,13 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    --sidebar-background: 147 30% 95%;
+    --sidebar-background: 0 0% 96%;
     --sidebar-foreground: 0 0% 13%;
     --sidebar-primary: 147 55% 29%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 147 40% 90%;
+    --sidebar-accent: 0 0% 92%;
     --sidebar-accent-foreground: 0 0% 13%;
-    --sidebar-border: 0 0% 85%;
+    --sidebar-border: 0 0% 88%;
     --sidebar-ring: 147 55% 29%;
   }
 
