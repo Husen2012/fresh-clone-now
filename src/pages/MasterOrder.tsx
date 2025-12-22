@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { DocumentsTab } from "@/components/DocumentsTab";
-import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck } from "lucide-react";
+import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OrderLine {
@@ -384,6 +384,18 @@ const MasterOrder = () => {
                     <Button onClick={handleAddCustomColumn} variant="outline" size="sm" className="gap-1 h-8 text-xs">
                       <Plus className="h-3 w-3" />
                       Add Custom Column
+                    </Button>
+                    <Button 
+                      onClick={() => toast({ 
+                        title: "Exporting to Excel", 
+                        description: "Order lines are being exported." 
+                      })} 
+                      variant="outline" 
+                      size="sm" 
+                      className="gap-1 h-8 text-xs"
+                    >
+                      <Download className="h-3 w-3" />
+                      Export to Excel
                     </Button>
                   </div>
                 </div>
