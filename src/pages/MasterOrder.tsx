@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { DocumentsTab } from "@/components/DocumentsTab";
-import { Save, Plus, Menu, FileText, User, Calendar, Truck, DollarSign, Package } from "lucide-react";
+import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OrderLine {
@@ -43,10 +43,6 @@ const MasterOrder = () => {
     orderDate: '2025-03-27',
     expectedDelivery: '2025-11-27',
     virtualInventory: false,
-    shipper: '',
-    shippingCost: 0,
-    shippingCharge: 0,
-    shippingMargin: 4,
     currency: 'USD',
     commissionRate: 0,
     totalProfit: 0,
@@ -229,61 +225,6 @@ const MasterOrder = () => {
                         onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
                         className="mt-0.5 h-7 text-xs"
                       />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Shipping Details */}
-                <div className="bg-muted/20 rounded p-2 border border-border/50">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <Truck className="h-3 w-3 text-primary" />
-                    <h3 className="text-xs font-semibold text-foreground">SHIPPING</h3>
-                  </div>
-                  <div className="space-y-2">
-                    <div>
-                      <Label htmlFor="shipper" className="text-xs">Shipper</Label>
-                      <Input
-                        id="shipper"
-                        value={formData.shipper}
-                        onChange={(e) => setFormData({ ...formData, shipper: e.target.value })}
-                        className="mt-0.5 h-7 text-xs"
-                        placeholder="Shipper"
-                      />
-                    </div>
-                    <div className="grid grid-cols-3 gap-1.5">
-                      <div>
-                        <Label htmlFor="shippingCost" className="text-xs">Cost</Label>
-                        <Input
-                          id="shippingCost"
-                          type="number"
-                          value={formData.shippingCost}
-                          onChange={(e) => setFormData({ ...formData, shippingCost: Number(e.target.value) })}
-                          className="mt-0.5 h-7 text-xs"
-                          placeholder="0"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="shippingCharge" className="text-xs">Charge</Label>
-                        <Input
-                          id="shippingCharge"
-                          type="number"
-                          value={formData.shippingCharge}
-                          onChange={(e) => setFormData({ ...formData, shippingCharge: Number(e.target.value) })}
-                          className="mt-0.5 h-7 text-xs"
-                          placeholder="0"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="shippingMargin" className="text-xs">Margin %</Label>
-                        <Input
-                          id="shippingMargin"
-                          type="number"
-                          value={formData.shippingMargin}
-                          onChange={(e) => setFormData({ ...formData, shippingMargin: Number(e.target.value) })}
-                          className="mt-0.5 h-7 text-xs"
-                          placeholder="0"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
