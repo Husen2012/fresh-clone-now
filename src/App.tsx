@@ -26,8 +26,10 @@ const App = () => (
               <AppSidebar />
               <div className="flex-1 flex flex-col">
                 <header className="h-12 border-b bg-card flex items-center justify-between px-4">
-                  <SidebarTrigger />
-                  <ThemeSwitcher />
+                  <div className="flex items-center gap-2">
+                    <SidebarTrigger />
+                    <ThemeSwitcher />
+                  </div>
                 </header>
                 <main className="flex-1">
                   <Routes>
