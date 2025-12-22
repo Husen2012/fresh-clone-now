@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { DocumentsTab } from "@/components/DocumentsTab";
-import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck } from "lucide-react";
+import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OrderLine {
@@ -275,41 +275,92 @@ const MasterOrder = () => {
                 </div>
               </div>
 
-              {/* Right Side - Link Buttons */}
+              {/* Right Side - Related Orders Flow */}
               <div className="space-y-3">
                 <div className="bg-card rounded p-4 border border-border">
-                  <h3 className="text-sm font-semibold text-foreground mb-3">Related Orders</h3>
-                  <div className="space-y-2">
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-start gap-2 h-9"
-                      onClick={() => toast({ title: "Navigate to Sale Order" })}
-                    >
-                      <FileText className="h-4 w-4" />
-                      Sale Order
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-start gap-2 h-9"
-                      onClick={() => toast({ title: "Navigate to Purchase Order" })}
-                    >
-                      <Package className="h-4 w-4" />
-                      Purchase Order
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-start gap-2 h-9"
-                      onClick={() => toast({ title: "Navigate to Shipping" })}
-                    >
-                      <Truck className="h-4 w-4" />
-                      Shipping
-                    </Button>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">Related Orders</h3>
+                  
+                  {/* Purchase Flow */}
+                  <div className="mb-4">
+                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Purchase Flow</p>
+                    <div className="flex items-center gap-1">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Purchase Order" })}
+                      >
+                        <Package className="h-3.5 w-3.5 text-primary" />
+                        <span className="truncate">Purchase Order</span>
+                      </Button>
+                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Vendor Bill" })}
+                      >
+                        <FileCheck className="h-3.5 w-3.5 text-orange-500" />
+                        <span className="truncate">Vendor Bill</span>
+                      </Button>
+                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Receipt" })}
+                      >
+                        <Receipt className="h-3.5 w-3.5 text-blue-500" />
+                        <span className="truncate">Receipt</span>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Sales Flow */}
+                  <div className="mb-4">
+                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Sales Flow</p>
+                    <div className="flex items-center gap-1">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Sales Order" })}
+                      >
+                        <FileText className="h-3.5 w-3.5 text-primary" />
+                        <span className="truncate">Sales Order</span>
+                      </Button>
+                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Invoice" })}
+                      >
+                        <FileCheck className="h-3.5 w-3.5 text-green-500" />
+                        <span className="truncate">Invoice</span>
+                      </Button>
+                      <ArrowRight className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
+                        onClick={() => toast({ title: "Navigate to Delivery" })}
+                      >
+                        <Truck className="h-3.5 w-3.5 text-purple-500" />
+                        <span className="truncate">Delivery</span>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Payment */}
+                  <div>
+                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Payment</p>
                     <Button 
                       variant="outline" 
                       className="w-full justify-start gap-2 h-9"
                       onClick={() => toast({ title: "Navigate to Payment" })}
                     >
-                      <DollarSign className="h-4 w-4" />
+                      <CreditCard className="h-4 w-4 text-emerald-500" />
                       Payment
                     </Button>
                   </div>
