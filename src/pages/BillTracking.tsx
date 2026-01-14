@@ -1,12 +1,30 @@
 import { useState } from "react";
-import { FileText, CheckCircle, AlertCircle, Clock, Package, Box, RefreshCw, Grid3X3, List, User, CreditCard, Truck, Layers } from "lucide-react";
+import { FileText, CheckCircle, AlertCircle, Clock, Package, Box, RefreshCw, Grid3X3, List, User, CreditCard, Truck, Layers, X, DollarSign, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
+
+interface Bill {
+  id: number;
+  customerName: string;
+  totalAmount: number;
+  paidAmount: number;
+  status: string;
+  totalCTN: number;
+  shippedCTN: number;
+  cbm: number;
+  sent: number;
+  remain: number;
+}
 
 // Mock data for demonstration
-const mockBills = [
+const initialBills: Bill[] = [
   {
     id: 1,
     customerName: "Hussein",
@@ -46,23 +64,27 @@ const mockBills = [
 ];
 
 const BillTracking = () => {
+  const [bills, setBills] = useState<Bill[]>(initialBills);
   const [hideFullyPaid, setHideFullyPaid] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [selectedBill, setSelectedBill] = useState<Bill | null>(null);
+  const [paymentAmount, setPaymentAmount] = useState("");
+  const { toast } = useToast();
 
   const filteredBills = hideFullyPaid 
-    ? mockBills.filter(bill => bill.status !== "paid")
-    : mockBills;
+    ? bills.filter(bill => bill.status !== "paid")
+    : bills;
 
   // Calculate summary statistics
-  const totalBills = filteredBills.reduce((sum, bill) => sum + bill.totalAmount, 0);
+  const totalBillsAmount = filteredBills.reduce((sum, bill) => sum + bill.totalAmount, 0);
   const totalPaid = filteredBills.reduce((sum, bill) => sum + bill.paidAmount, 0);
-  const totalOutstanding = totalBills - totalPaid;
+  const totalOutstanding = totalBillsAmount - totalPaid;
   const delayedBills = filteredBills.filter(bill => bill.status === "not_paid").length;
   const totalCTN = filteredBills.reduce((sum, bill) => sum + bill.totalCTN, 0);
   const shippedCTN = filteredBills.reduce((sum, bill) => sum + bill.shippedCTN, 0);
   const totalCBM = filteredBills.reduce((sum, bill) => sum + bill.cbm, 0);
   const uniqueCustomers = new Set(filteredBills.map(bill => bill.customerName)).size;
-  const paidPercentage = totalBills > 0 ? Math.round((totalPaid / totalBills) * 100) : 0;
+  const paidPercentage = totalBillsAmount > 0 ? Math.round((totalPaid / totalBillsAmount) * 100) : 0;
   const shippedPercentage = totalCTN > 0 ? Math.round((shippedCTN / totalCTN) * 100) : 0;
 
   const getStatusBadge = (status: string) => {
@@ -74,6 +96,41 @@ const BillTracking = () => {
       default:
         return <span className="flex items-center gap-1 text-red-600"><span className="w-2 h-2 rounded-full bg-red-500"></span> Not Paid</span>;
     }
+  };
+
+  const handlePayment = () => {
+    if (!selectedBill || !paymentAmount) return;
+    
+    const amount = parseFloat(paymentAmount);
+    if (isNaN(amount) || amount <= 0) {
+      toast({ title: "Invalid amount", description: "Please enter a valid payment amount", variant: "destructive" });
+      return;
+    }
+
+    const outstanding = selectedBill.totalAmount - selectedBill.paidAmount;
+    if (amount > outstanding) {
+      toast({ title: "Amount too high", description: `Maximum payment is $${outstanding.toLocaleString()}`, variant: "destructive" });
+      return;
+    }
+
+    setBills(prev => prev.map(bill => {
+      if (bill.id === selectedBill.id) {
+        const newPaidAmount = bill.paidAmount + amount;
+        const newStatus = newPaidAmount >= bill.totalAmount ? "paid" : newPaidAmount > 0 ? "partial" : "not_paid";
+        return { ...bill, paidAmount: newPaidAmount, status: newStatus };
+      }
+      return bill;
+    }));
+
+    toast({ title: "Payment recorded", description: `$${amount.toLocaleString()} payment for ${selectedBill.customerName}` });
+    setPaymentAmount("");
+    setSelectedBill(null);
+  };
+
+  const handlePayFullAmount = () => {
+    if (!selectedBill) return;
+    const outstanding = selectedBill.totalAmount - selectedBill.paidAmount;
+    setPaymentAmount(outstanding.toString());
   };
 
   return (
@@ -130,7 +187,7 @@ const BillTracking = () => {
                 <FileText className="h-4 w-4 text-blue-600" />
               </div>
             </div>
-            <div className="text-2xl font-bold">${totalBills.toLocaleString()}</div>
+            <div className="text-2xl font-bold">${totalBillsAmount.toLocaleString()}</div>
             <div className="text-xs text-muted-foreground">Total</div>
             <div className="text-xs text-muted-foreground mt-1">
               {filteredBills.length} bills from {uniqueCustomers} customers
@@ -211,7 +268,11 @@ const BillTracking = () => {
           const outstanding = bill.totalAmount - bill.paidAmount;
 
           return (
-            <Card key={bill.id} className="hover:shadow-md transition-shadow">
+            <Card 
+              key={bill.id} 
+              className="hover:shadow-md transition-shadow cursor-pointer hover:border-primary"
+              onClick={() => setSelectedBill(bill)}
+            >
               <CardContent className="p-4 space-y-4">
                 {/* Customer Header */}
                 <div className="flex items-center justify-between">
@@ -273,11 +334,149 @@ const BillTracking = () => {
                     <span className="text-primary">Remain: {bill.remain}</span>
                   </div>
                 </div>
+
+                {/* Quick Actions */}
+                <div className="flex gap-2 pt-2">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex-1"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBill(bill);
+                    }}
+                  >
+                    <Eye className="h-4 w-4 mr-1" />
+                    View
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    className="flex-1"
+                    disabled={bill.status === "paid"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBill(bill);
+                    }}
+                  >
+                    <DollarSign className="h-4 w-4 mr-1" />
+                    Pay
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           );
         })}
       </div>
+
+      {/* Bill Detail Modal */}
+      <Dialog open={!!selectedBill} onOpenChange={(open) => !open && setSelectedBill(null)}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <User className="h-5 w-5" />
+              {selectedBill?.customerName} - Bill Details
+            </DialogTitle>
+          </DialogHeader>
+          
+          {selectedBill && (
+            <div className="space-y-6">
+              {/* Status */}
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">Status</span>
+                {getStatusBadge(selectedBill.status)}
+              </div>
+
+              <Separator />
+
+              {/* Financial Summary */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-sm text-muted-foreground">Total Amount</div>
+                  <div className="text-xl font-bold">${selectedBill.totalAmount.toLocaleString()}</div>
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground">Paid Amount</div>
+                  <div className="text-xl font-bold text-green-600">${selectedBill.paidAmount.toLocaleString()}</div>
+                </div>
+                <div className="col-span-2">
+                  <div className="text-sm text-muted-foreground">Outstanding</div>
+                  <div className="text-2xl font-bold text-destructive">
+                    ${(selectedBill.totalAmount - selectedBill.paidAmount).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Progress */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Payment Progress</span>
+                  <span>{Math.round((selectedBill.paidAmount / selectedBill.totalAmount) * 100)}%</span>
+                </div>
+                <Progress value={(selectedBill.paidAmount / selectedBill.totalAmount) * 100} className="h-3" />
+              </div>
+
+              <Separator />
+
+              {/* Shipping Details */}
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <Package className="h-4 w-4 text-muted-foreground" />
+                  <span>Total CTN: {selectedBill.totalCTN}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Truck className="h-4 w-4 text-muted-foreground" />
+                  <span>Shipped: {selectedBill.shippedCTN}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Layers className="h-4 w-4 text-muted-foreground" />
+                  <span>CBM: {selectedBill.cbm.toFixed(1)}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Box className="h-4 w-4 text-primary" />
+                  <span className="text-primary">Remain: {selectedBill.remain}</span>
+                </div>
+              </div>
+
+              {selectedBill.status !== "paid" && (
+                <>
+                  <Separator />
+
+                  {/* Direct Payment */}
+                  <div className="space-y-4">
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <DollarSign className="h-4 w-4" />
+                      Record Payment
+                    </h4>
+                    <div className="space-y-2">
+                      <Label htmlFor="paymentAmount">Payment Amount</Label>
+                      <div className="flex gap-2">
+                        <Input 
+                          id="paymentAmount"
+                          type="number"
+                          placeholder="Enter amount"
+                          value={paymentAmount}
+                          onChange={(e) => setPaymentAmount(e.target.value)}
+                          className="flex-1"
+                        />
+                        <Button variant="outline" onClick={handlePayFullAmount}>
+                          Pay Full
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Outstanding: ${(selectedBill.totalAmount - selectedBill.paidAmount).toLocaleString()}
+                      </p>
+                    </div>
+                    <Button className="w-full" onClick={handlePayment} disabled={!paymentAmount}>
+                      <CreditCard className="h-4 w-4 mr-2" />
+                      Record Payment
+                    </Button>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
