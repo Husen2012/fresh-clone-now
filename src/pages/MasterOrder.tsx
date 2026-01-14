@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrderLineRow } from "@/components/OrderLineRow";
 import { DocumentsTab } from "@/components/DocumentsTab";
-import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Truck, Receipt, CreditCard, FileCheck, Download } from "lucide-react";
+import { Save, Plus, Menu, FileText, User, Calendar, DollarSign, Package, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface OrderLine {
@@ -163,202 +163,111 @@ const MasterOrder = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-2">
-              {/* Left Side - All Form Fields */}
-              <div className="space-y-2">
-                {/* Basic Information */}
-                <div className="bg-muted/20 rounded p-2 border border-border/50">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <FileText className="h-3 w-3 text-primary" />
-                    <h3 className="text-xs font-semibold text-foreground">BASIC INFO</h3>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <Label htmlFor="projectName" className="text-xs">Project</Label>
-                      <Input
-                        id="projectName"
-                        value={formData.projectName}
-                        onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                        className="mt-0.5 h-7 text-xs"
-                        placeholder="Project name"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="client" className="text-xs flex items-center gap-1">
-                        <User className="h-2.5 w-2.5" />
-                        <span>Client</span>
-                      </Label>
-                      <Input
-                        id="client"
-                        value={formData.client}
-                        onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                        className="mt-0.5 h-7 text-xs"
-                        placeholder="Client name"
-                      />
-                    </div>
-                  </div>
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              {/* Basic Information */}
+              <div className="bg-muted/20 rounded p-3 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <FileText className="h-3.5 w-3.5 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">BASIC INFO</h3>
                 </div>
-
-                {/* Timeline */}
-                <div className="bg-muted/20 rounded p-2 border border-border/50">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <Calendar className="h-3 w-3 text-primary" />
-                    <h3 className="text-xs font-semibold text-foreground">TIMELINE</h3>
+                <div className="space-y-2">
+                  <div>
+                    <Label htmlFor="projectName" className="text-xs">Project</Label>
+                    <Input
+                      id="projectName"
+                      value={formData.projectName}
+                      onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                      placeholder="Project name"
+                    />
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
-                      <Input
-                        id="orderDate"
-                        type="date"
-                        value={formData.orderDate}
-                        onChange={(e) => setFormData({ ...formData, orderDate: e.target.value })}
-                        className="mt-0.5 h-7 text-xs"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="expectedDelivery" className="text-xs">Delivery</Label>
-                      <Input
-                        id="expectedDelivery"
-                        type="date"
-                        value={formData.expectedDelivery}
-                        onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
-                        className="mt-0.5 h-7 text-xs"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Financial Summary */}
-                <div className="bg-muted/20 rounded p-2 border border-border/50">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <DollarSign className="h-3 w-3 text-primary" />
-                    <h3 className="text-xs font-semibold text-foreground">FINANCIAL</h3>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <div>
-                        <Label htmlFor="currency" className="text-xs">Currency</Label>
-                        <Input
-                          id="currency"
-                          value={formData.currency}
-                          onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                          className="mt-0.5 h-7 text-xs"
-                          placeholder="USD"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="commissionRate" className="text-xs">Commission %</Label>
-                        <Input
-                          id="commissionRate"
-                          type="number"
-                          value={formData.commissionRate}
-                          onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
-                          className="mt-0.5 h-7 text-xs"
-                          placeholder="0"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="totalProfit" className="text-xs font-semibold">Total Profit</Label>
-                      <Input
-                        id="totalProfit"
-                        type="number"
-                        value={formData.totalProfit}
-                        onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
-                        className="mt-0.5 h-8 text-xs font-bold bg-primary/5 border-primary/20"
-                        disabled
-                        placeholder="0.00"
-                      />
-                    </div>
+                  <div>
+                    <Label htmlFor="client" className="text-xs flex items-center gap-1">
+                      <User className="h-2.5 w-2.5" />
+                      <span>Client</span>
+                    </Label>
+                    <Input
+                      id="client"
+                      value={formData.client}
+                      onChange={(e) => setFormData({ ...formData, client: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                      placeholder="Client name"
+                    />
                   </div>
                 </div>
               </div>
 
-              {/* Right Side - Related Orders Flow */}
-              <div className="space-y-3">
-                <div className="bg-card rounded p-4 border border-border">
-                  <h3 className="text-sm font-semibold text-foreground mb-4">Related Orders</h3>
-                  
-                  {/* Purchase Flow */}
-                  <div className="mb-4">
-                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Purchase Flow</p>
-                    <div className="flex items-center gap-2">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Purchase Order" })}
-                      >
-                        <Package className="h-3.5 w-3.5 text-primary" />
-                        <span className="truncate">Purchase Order</span>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Vendor Bill" })}
-                      >
-                        <FileCheck className="h-3.5 w-3.5 text-orange-500" />
-                        <span className="truncate">Vendor Bill</span>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Receipt" })}
-                      >
-                        <Receipt className="h-3.5 w-3.5 text-blue-500" />
-                        <span className="truncate">Receipt</span>
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Sales Flow */}
-                  <div className="mb-4">
-                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Sales Flow</p>
-                    <div className="flex items-center gap-2">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Sales Order" })}
-                      >
-                        <FileText className="h-3.5 w-3.5 text-primary" />
-                        <span className="truncate">Sales Order</span>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Invoice" })}
-                      >
-                        <FileCheck className="h-3.5 w-3.5 text-green-500" />
-                        <span className="truncate">Invoice</span>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="flex-1 justify-start gap-1.5 h-8 text-xs"
-                        onClick={() => toast({ title: "Navigate to Delivery" })}
-                      >
-                        <Truck className="h-3.5 w-3.5 text-purple-500" />
-                        <span className="truncate">Delivery</span>
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Payment */}
+              {/* Timeline */}
+              <div className="bg-muted/20 rounded p-3 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Calendar className="h-3.5 w-3.5 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">TIMELINE</h3>
+                </div>
+                <div className="space-y-2">
                   <div>
-                    <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Payment</p>
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-start gap-2 h-9"
-                      onClick={() => toast({ title: "Navigate to Payment" })}
-                    >
-                      <CreditCard className="h-4 w-4 text-emerald-500" />
-                      Payment
-                    </Button>
+                    <Label htmlFor="orderDate" className="text-xs">Order Date</Label>
+                    <Input
+                      id="orderDate"
+                      type="date"
+                      value={formData.orderDate}
+                      onChange={(e) => setFormData({ ...formData, orderDate: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="expectedDelivery" className="text-xs">Delivery</Label>
+                    <Input
+                      id="expectedDelivery"
+                      type="date"
+                      value={formData.expectedDelivery}
+                      onChange={(e) => setFormData({ ...formData, expectedDelivery: e.target.value })}
+                      className="mt-0.5 h-7 text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Financial Summary */}
+              <div className="bg-muted/20 rounded p-3 border border-border/50">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <DollarSign className="h-3.5 w-3.5 text-primary" />
+                  <h3 className="text-xs font-semibold text-foreground">FINANCIAL</h3>
+                </div>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <Label htmlFor="currency" className="text-xs">Currency</Label>
+                      <Input
+                        id="currency"
+                        value={formData.currency}
+                        onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
+                        className="mt-0.5 h-7 text-xs"
+                        placeholder="USD"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="commissionRate" className="text-xs">Commission %</Label>
+                      <Input
+                        id="commissionRate"
+                        type="number"
+                        value={formData.commissionRate}
+                        onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
+                        className="mt-0.5 h-7 text-xs"
+                        placeholder="0"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="totalProfit" className="text-xs font-semibold">Total Profit</Label>
+                    <Input
+                      id="totalProfit"
+                      type="number"
+                      value={formData.totalProfit}
+                      onChange={(e) => setFormData({ ...formData, totalProfit: Number(e.target.value) })}
+                      className="mt-0.5 h-7 text-xs font-bold bg-primary/5 border-primary/20"
+                      disabled
+                      placeholder="0.00"
+                    />
                   </div>
                 </div>
               </div>
