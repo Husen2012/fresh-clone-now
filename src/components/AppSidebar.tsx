@@ -1,4 +1,4 @@
-import { Home, FileText, Package, LayoutDashboard } from "lucide-react";
+import { Home, FileText, Package, LayoutDashboard, Receipt } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import {
@@ -16,6 +16,7 @@ const items = [
   { title: "Home", url: "/", icon: Home },
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Master Orders", url: "/master-orders", icon: FileText },
+  { title: "Bill Tracking", url: "/bill-tracking", icon: Receipt },
   { title: "Products", url: "/products", icon: Package },
 ];
 

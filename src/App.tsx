@@ -10,6 +10,7 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import Dashboard from "./pages/Dashboard";
 import MasterOrders from "./pages/MasterOrders";
 import MasterOrder from "./pages/MasterOrder";
+import BillTracking from "./pages/BillTracking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/master-orders" element={<MasterOrders />} />
                     <Route path="/master-order/:id" element={<MasterOrder />} />
+                    <Route path="/bill-tracking" element={<BillTracking />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
