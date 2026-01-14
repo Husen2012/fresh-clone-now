@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type ThemeName = 'default' | 'excel';
+export type ThemeName = 'default' | 'excel' | 'steel';
 
 interface ThemeContextType {
   theme: ThemeName;
@@ -31,7 +31,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     localStorage.setItem('app-theme', theme);
     
     // Remove all theme classes
-    document.documentElement.classList.remove('theme-default', 'theme-excel');
+    document.documentElement.classList.remove('theme-default', 'theme-excel', 'theme-steel');
     
     // Add current theme class
     document.documentElement.classList.add(`theme-${theme}`);

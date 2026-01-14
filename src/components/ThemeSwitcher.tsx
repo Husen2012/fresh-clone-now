@@ -12,6 +12,7 @@ import { Palette, Check } from "lucide-react";
 const themes: { name: ThemeName; label: string; description: string }[] = [
   { name: "default", label: "Default", description: "Clean modern theme" },
   { name: "excel", label: "Excel", description: "Classic spreadsheet style" },
+  { name: "steel", label: "Steel Blue", description: "Professional blue theme" },
 ];
 
 type ThemeSwitcherProps = {
