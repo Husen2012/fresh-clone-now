@@ -11,6 +11,8 @@ import Dashboard from "./pages/Dashboard";
 import MasterOrders from "./pages/MasterOrders";
 import MasterOrder from "./pages/MasterOrder";
 import BillTracking from "./pages/BillTracking";
+import Invoices from "./pages/Invoices";
+import Invoice from "./pages/Invoice";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,8 @@ const App = () => (
                     <Route path="/master-orders" element={<MasterOrders />} />
                     <Route path="/master-order/:id" element={<MasterOrder />} />
                     <Route path="/bill-tracking" element={<BillTracking />} />
+                    <Route path="/invoices" element={<Invoices />} />
+                    <Route path="/invoice/:id" element={<Invoice />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
