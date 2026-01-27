@@ -12,16 +12,16 @@ interface BreadcrumbProps {
 
 export const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
-    <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-6">
+    <nav className="flex items-center text-sm text-muted-foreground overflow-x-auto whitespace-nowrap">
       {items.map((item, index) => (
-        <div key={index} className="flex items-center">
-          {index > 0 && <ChevronRight className="h-4 w-4 mx-2" />}
+        <div key={index} className="flex items-center flex-shrink-0">
+          {index > 0 && <ChevronRight className="h-4 w-4 mx-1 md:mx-2 flex-shrink-0" />}
           {item.href ? (
-            <Link to={item.href} className="hover:text-foreground transition-colors">
+            <Link to={item.href} className="hover:text-foreground transition-colors truncate max-w-[100px] md:max-w-none">
               {item.label}
             </Link>
           ) : (
-            <span className="text-foreground">{item.label}</span>
+            <span className="text-foreground truncate max-w-[120px] md:max-w-none">{item.label}</span>
           )}
         </div>
       ))}
