@@ -173,21 +173,21 @@ const MasterOrder = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="border-b border-border bg-card px-4 py-2 flex items-center gap-3">
-        <Button variant="ghost" size="icon" className="h-7 w-7">
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <div className="border-b border-border bg-card px-2 md:px-4 py-2 flex items-center gap-2 md:gap-3 overflow-hidden">
+        <Button variant="ghost" size="icon" className="h-7 w-7 flex-shrink-0">
           <Menu className="h-4 w-4" />
         </Button>
         <Breadcrumb
           items={[
             { label: "Dashboard", href: "/" },
             { label: "Master Orders", href: "/master-orders" },
-            { label: "Master Order #40" },
+            { label: "Order #40" },
           ]}
         />
       </div>
 
-      <div className="p-4 max-w-[1600px] mx-auto">
+      <div className="p-3 md:p-4 max-w-[1600px] mx-auto">
         <Card>
           <CardContent className="p-4">
             {/* Header - Responsive */}
